@@ -1,71 +1,86 @@
 import React, {Component} from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import { Button, Text as TextElement } from 'react-native-elements';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, FlatList } from 'react-native';
 
-class Home extends Component {
-  render(){
-    return(
-      <View style={styles.container}>
-          <Button title="Button"  />
-            <Text style={styles.title}>Log In</Text> 
-            <TextInput style={styles.textInput} placeholder="Username" />
-            <TextInput style={styles.textInput} placeholder="Password" secureTextEntry />
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>Login</Text>
-            </TouchableOpacity>
-            <View style={styles.daftarDisiniContainer}>
-                <Text>Belum memiliki akun? </Text>
-                <TouchableOpacity>
-                    <Text style={styles.daftarDisiniText}>Daftar disini</Text>
-                </TouchableOpacity>
+export default class Home extends Component {
+    constructor(){
+        super()
+        this.state = {
+            username: '',
+            list: ['Edo','Amar']
+        }
+    }
+
+    _onChangeUsername(text){
+        this.setState({
+            username: text
+        })
+    }
+
+    _onAddItem(){
+        var newList = this.state.list
+        newList.push(this.state.username)
+
+        this.setState({
+            list: newList
+        })
+    }
+
+    render(){
+        return(
+            <View style={styles.container}>
+                <View style={styles.formContainer}>
+                    <TextInput 
+                        style={styles.textInput} 
+                        placeholder="Username" 
+                        value={this.state.username}
+                        onChangeText={(text) => this._onChangeUsername(text)}
+                    />
+                    <TouchableOpacity style={styles.button} onPress={() => this._onAddItem()}>
+                        <Text style={styles.textButton}>TAMBAH</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.listContainer}>
+                    <FlatList
+                        data={this.state.list}
+                        renderItem={({item, index}) => (
+                            <View style={{paddingLeft: 20, marginBottom: 10, borderColor: 'grey', borderBottomWidth: 0.5}}>
+                                <Text>{item}</Text>
+                            </View>
+                        )}
+                        showsVerticalScrollIndicator={false}
+                    />
+                </View>
+                
             </View>
-      </View>
-    )
-  }
+        )
+    }
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#FFFFFF'
+        justifyContent: 'center'
     },
-    title: {
-        fontSize: 24,
-        fontWeight: '500',
-        marginBottom: 20
+    formContainer: {
+        flex: 1,
+        alignItems: 'center'
+    },
+    listContainer: {
+        flex: 1
     },
     textInput: {
+        borderColor: 'grey',
+        borderBottomWidth: 0.5,
         width: '80%',
         height: 50,
-        borderColor: 'grey',
-        borderWidth: 0.5,
-        borderRadius: 20,
-        paddingHorizontal: 15,
-        marginVertical: 10
-
+        marginBottom: 20,
     },
     button: {
-        width: '80%',
-        height: 50,
-        backgroundColor: '#EB7D08',
-        borderRadius: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginVertical: 10
+        backgroundColor: 'cyan',
+        paddingHorizontal: 10,
+        paddingVertical: 10
     },
-    buttonText: {
-        color: '#FFFFFF'
-    },
-    daftarDisiniContainer: {
-       flexDirection: 'row',
-       alignItems: 'center',
-       marginTop: 20
-    },
-    daftarDisiniText: {
-        color: '#EB7D08'
+    textButton: {
+        // color: 'white'
     }
 })
-
-export default Home;
