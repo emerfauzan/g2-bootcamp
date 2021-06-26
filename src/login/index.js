@@ -6,7 +6,8 @@ class Home extends Component {
     constructor(){
         super()
         this.state = {
-            isPasswordShow: false
+            isPasswordShow: false,
+            password: ''
         }
     }
   render(){

@@ -43,7 +43,7 @@ export default class Home extends Component {
                     <FlatList
                         data={this.state.list}
                         renderItem={({item, index}) => (
-                            <View style={{paddingLeft: 20, marginBottom: 10, borderColor: 'grey', borderBottomWidth: 0.5}}>
+                            <View key={index} style={{paddingLeft: 20, marginBottom: 10, borderColor: 'grey', borderBottomWidth: 0.5}}>
                                 <Text>{item}</Text>
                             </View>
                         )}
