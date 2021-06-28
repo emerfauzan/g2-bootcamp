@@ -41,6 +41,17 @@ class People extends Component {
         
     }
 
+    _onDelete(index){
+        let newPeoples = this.state.peoples;
+
+
+        newPeoples.splice(index, 1)
+
+        this.setState({
+            peoples: newPeoples
+        })
+    }
+
     render(){
         return(
             <View style={styles.container}>
@@ -49,12 +60,22 @@ class People extends Component {
                         onChangeText={(text) => this.setState({name: text})} />
                     <TextInput style={styles.textInput} placeholder="Status" value={this.state.status} 
                         onChangeText={(text) => this.setState({status: text})} />
-                    <TouchableOpacity onPress={() => this._onAdd()}>
-                        <Text style={{color: 'blue'}}>Tambah</Text>
-                    </TouchableOpacity>
+
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity onPress={() => this._onAdd()}>
+                            <Text style={{color: 'blue', marginRight: 10}}>Tambah</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <Text style={{color: 'blue', marginRight: 10}}>Simpan</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <Text style={{color: 'red', marginRight: 10}}>Batal</Text>
+                        </TouchableOpacity>
+                    </View>
+                    
                 </View>
                 <View style={styles.peopleContainer}>
-                    <ListPeople people={this.state.peoples} />
+                    <ListPeople people={this.state.peoples} onDelete={(index) => this._onDelete(index)} />
                 </View>
             </View>
         )
@@ -66,13 +87,17 @@ const styles = StyleSheet.create({
         flex: 1
     },
     formContainer: {
-        flex: 1
+        flex: 1,
+        paddingHorizontal: 10
     },
     peopleContainer: {
         flex: 1
     },
     textInput: {
         width: '100%'
+    },
+    buttonContainer: {
+        flexDirection: 'row'
     }
 })
 
