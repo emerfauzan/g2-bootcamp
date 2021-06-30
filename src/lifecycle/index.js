@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class Lifecycle extends Component {
@@ -8,27 +8,51 @@ class Lifecycle extends Component {
         this.state = {
             nama: [],
             jumlah: 0,
-            isCounted: false
+            isCounted: false,
+            angka: 0,
+            notes: ""
         }
     }
 
     componentDidMount(){
         const nama = ["Adi", "Umar", "Leo"]
 
-        this.setState({
-            nama: nama,
-            isCounted: false
-        })
+        
     }
 
     componentDidUpdate(){
-        if(!this.state.isCounted){
-            this.setState({
-                jumlah: this.state.nama.length,
-                isCounted: true
-            })
-        }
         
+        
+    }
+
+    
+
+
+    getSnapshotBeforeUpdate(prevProps, prevState){
+        console.log("Before Update ", prevState)
+
+        if(!this.state.isCounted){
+            if(prevState.angka > this.state.angka){
+                this.setState({
+                    notes: "State baru lebih kecil",
+                    isCounted: true
+                })
+            } else if(prevState.angka < this.state.angka){
+                this.setState({
+                    notes: "State baru lebih besar",
+                    isCounted: true
+                })
+            } else {
+                this.setState({
+                    notes: "State baru sama dengan",
+                    isCounted: true
+                })
+            }
+        }
+
+        
+
+        return 0;
     }
 
     _addName(){
@@ -44,21 +68,15 @@ class Lifecycle extends Component {
     render(){
         return(
             <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} >
-                <TouchableOpacity onPress={() => this._addName()}>
-                    <Text style={{color: 'blue'}} >Tambah</Text>
-                </TouchableOpacity>
+                <TextInput style={{width: '80%'}} placeholder="Masukkan Angka" onChangeText={(text) => this.setState({angka: text, isCounted: false})} ></TextInput>
 
-                {
-                    this.state.nama.map((item) => (
-                        <Text style={{fontSize: 20}} >{item}</Text>
-                    ))
-                }
-
-                <Text style={{fontSize: 24, marginTop: 30}}>
-                    {this.state.jumlah}
-                </Text>
+                <Text>{this.state.notes}</Text>
             </View>
         )
+    }
+
+    componentWillUnmount(){
+        
     }
 }
 
