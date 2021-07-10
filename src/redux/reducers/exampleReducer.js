@@ -1,5 +1,5 @@
 const initialState = {
-    number: 0
+    number: 15
 }
 
 export default function reducer(state = initialState, action){
