@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import { ToastAndroid } from 'react-native';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { Button, Text as TextElement } from 'react-native-elements';
+import { accelerometer } from "react-native-sensors";
 
 class Home extends Component {
     constructor(){
@@ -12,6 +13,12 @@ class Home extends Component {
             email: 'fauzan@app.com',
             password: 'password'
         }
+    }
+
+    componentDidMount(){
+        // const subscription = accelerometer.subscribe(({ x, y, z, timestamp }) =>
+        //     console.log('=== ',{ x, y, z, timestamp })
+        // );
     }
 
     onLogin(){

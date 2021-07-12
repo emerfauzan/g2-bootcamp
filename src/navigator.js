@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Page1 from "./page_1";
 import Page2 from "./page_2";
 import Swipe from "./swipe";
@@ -11,7 +12,8 @@ import Login from "./login";
 import PageRedux1 from "./pageRedux/page_1";
 import PageRedux2 from "./pageRedux/page_2";
 import Storage from './storage';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import Camera from './camera';
+import OpenCamera from './camera/open-camera';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -49,7 +51,7 @@ class Navigator extends React.Component{
         return(
             <NavigationContainer>
                 <Stack.Navigator
-                    initialRouteName={this.state.routeName}
+                    initialRouteName="Camera"
                 >
                     <Stack.Screen
                         name="Login"
@@ -62,6 +64,14 @@ class Navigator extends React.Component{
                     <Stack.Screen
                         name="PageRedux2"   
                         component={PageRedux2}
+                    />
+                    <Stack.Screen
+                        name="Camera"   
+                        component={Camera}
+                    />
+                    <Stack.Screen
+                        name="OpenCamera"   
+                        component={OpenCamera}
                     />
                     {/* <Stack.Screen
                         name="Swipe"
