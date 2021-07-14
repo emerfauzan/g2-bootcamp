@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "250065390418",
+    "project_id": "bootcamp-f287c",
+    "storage_bucket": "bootcamp-f287c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:250065390418:android:3afc1438826822cc14088b",
+        "android_client_info": {
+          "package_name": "com.firstproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "250065390418-4cecdfqu65s287k6i7ea2o69foa1a0hr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbN6esV36OLjispWV3dkLtm0ELBoyM_Jo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "250065390418-4cecdfqu65s287k6i7ea2o69foa1a0hr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

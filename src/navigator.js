@@ -14,6 +14,7 @@ import PageRedux2 from "./pageRedux/page_2";
 import Storage from './storage';
 import Camera from './camera';
 import OpenCamera from './camera/open-camera';
+import Firebase from './firebase';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -51,7 +52,7 @@ class Navigator extends React.Component{
         return(
             <NavigationContainer>
                 <Stack.Navigator
-                    initialRouteName="Camera"
+                    initialRouteName="Firebase"
                 >
                     <Stack.Screen
                         name="Login"
@@ -72,6 +73,10 @@ class Navigator extends React.Component{
                     <Stack.Screen
                         name="OpenCamera"   
                         component={OpenCamera}
+                    />
+                    <Stack.Screen
+                        name="Firebase"   
+                        component={Firebase}
                     />
                     {/* <Stack.Screen
                         name="Swipe"
